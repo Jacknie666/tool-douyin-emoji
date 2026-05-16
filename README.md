@@ -5,6 +5,14 @@
 [![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/Jacknie666/tool-douyin-emoji?style=flat-square)](https://github.com/Jacknie666/tool-douyin-emoji/stargazers)
+[![Hugging Face Space](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-yellow)](https://huggingface.co/spaces/XiaoJieNie/douyin-emoji-exporter)
+
+---
+
+## 🌐 在线体验 (Live Demo)
+无需配置环境，直接在网页端一键提取：
+👉 **[Hugging Face Spaces - Douyin Emoji Exporter](https://huggingface.co/spaces/XiaoJieNie/douyin-emoji-exporter)**
+
 
 ---
 
