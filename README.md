@@ -1,73 +1,70 @@
-# 抖音表情包转微信小助手 ❤️
+# 📦 Douyin-Emoji-Toolkit
 
-## 项目缘起
+> **底层逻辑**：通过自动化爬取与多线程转换，解决抖音 WebP 动态表情在微信等社交平台的兼容性痛点。项目源于对生活琐碎场景的深度洞察与技术赋能。
 
-这个项目的诞生，源于一个简单而充满爱意的初衷：我的女朋友 特别喜欢抖音上的各种表情包。为了满足她的这个小小心愿，我动手写了这个小工具。
-
-希望这个小工具也能帮到有同样需求的小伙伴们！
-
-## 功能
-
-*   **自动提取**: 从抖音表情包页面的 HTML 内容中自动识别并提取表情图片链接。
-*   **批量下载**: 使用多线程并发下载提取到的所有表情图片。
-*   **格式转换**: 能够将下载的 WebP、PNG、JPG 等格式的（动态或静态）表情图片统一转换为 GIF 格式，以保证在微信中的良好兼容性和动效。
-*   **GIF 优化**: 对转换后的 GIF 进行优化，包括：
-    *   自定义循环次数（默认为无限循环）。
-    *   调整帧持续时间，确保动画流畅。
-    *   颜色量化和抖动处理，以在减小文件体积的同时尽量保持视觉效果。
-*   **打包压缩**: 将所有处理好的 GIF 表情打包成一个 ZIP 文件，方便导入和分享。
-*   **数量控制**: 可以设置下载和处理的表情数量上限。
-
-## 使用方法
-
-1.  **准备 HTML 内容**:
-    *   在电脑浏览器中打开抖音网页版，进入你想要下载表情包的页面（比如某个用户的收藏表情页面，或者聊天窗口中的表情选择面板）。
-    *   **获取 HTML**:
-        *   **方法一 (推荐)**: 在表情列表区域，鼠标右键 -> “检查” (Inspect) 打开开发者工具。定位到包含所有表情图片的父级 HTML 元素。右键点击该元素 -> "Copy" -> "Copy outerHTML"。
-        *   **方法二**: 直接右键页面 -> “查看网页源代码” (View Page Source)，然后复制全部或包含表情链接的 relevante 部分。**注意**：这种方法可能包含很多无关内容，不如方法一精确。
-    *   **保存或直接使用**:
-        *   你可以将复制的 HTML 内容粘贴到一个文本文件中，例如 `douyin_emojis.html`。然后在脚本中设置 `HTML_CONTENT_FILE = "douyin_emojis.html"`。
-        *   或者，直接将复制的 HTML 内容粘贴到脚本的 `html_content` 变量中（适合少量或一次性使用）。
-
-2.  **配置脚本 (可选)**:
-    *   打开 `douyin_emoji_converter.py` (或者你给脚本起的名字)。
-    *   根据需要调整顶部的全局配置参数：
-        *   `HTML_CONTENT_FILE`: 如果你将HTML保存到了文件，请设置此路径。
-        *   `MAX_EMOTICONS_TO_DOWNLOAD`: 设置想要下载的表情数量上限，`0` 表示全部下载。
-        *   `ZIP_FILENAME`: 输出的 ZIP 文件名。
-        *   `GIF_DEFAULT_FRAME_DURATION`, `GIF_MIN_FRAME_DURATION`: GIF 动画帧相关的参数，一般默认即可。
-        *   其他 GIF 优化参数，如 `GIF_QUANTIZE_COLORS` 等。
-
-3.  **安装依赖**:
-    确保你的 Python 环境中安装了必要的库。如果脚本中使用了 `requests`, `beautifulsoup4`, `Pillow`，你需要通过 pip 安装它们：
-    ```bash
-    pip install requests zipfile bs4 concurrent os io urllib
-    ```
-
-4.  **运行脚本**:
-    在终端或命令行中执行脚本：
-    ```bash
-    python douyin_emoji_converter.py
-    ```
-
-5.  **获取表情包**:
-    脚本运行完毕后，会在同目录下生成一个名为 `DOUYIN_emoji.zip` (或你自定义的名称) 的压缩文件。解压后即可得到所有转换好的 GIF 表情。
-
-6.  **导入微信**:
-    *   **手机端**: 将解压后的 GIF 图片发送到手机（例如通过文件传输助手、QQ、邮箱等）。然后在手机上逐个添加到微信表情。
-    *   **电脑端**: 如果微信电脑版支持直接拖拽添加自定义表情，也可以尝试。
-
-## 注意事项
-
-*   **CSS 选择器**: 抖音网页版的前端结构可能会发生变化。如果脚本无法正确提取图片链接（提示“未找到图片”），你可能需要更新 `extract_image_urls_from_html` 函数中的 CSS 选择器 (`soup.select(...)` 部分)。你需要使用浏览器开发者工具来确定当前页面上表情图片的正确 CSS 路径。
-*   **网络问题**: 下载速度和成功率取决于你的网络连接以及抖音服务器的响应。
-*   **GIF 质量与体积**: `GIF_OPTIMIZE`, `GIF_QUANTIZE_COLORS` 等参数会影响最终 GIF 的视觉质量和文件大小。你可以根据自己的偏好进行调整。
-*   **版权**: 请尊重表情包的版权，仅供个人使用和学习交流。
-
-## 致谢
-
-❤️ **致我最爱的宝宝** ❤️：没有你的奇思妙想和对可爱表情的执着，就没有这个项目的诞生。希望这个小工具让你用起表情包来更开心！爱你！
+[![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/Jacknie666/Douyin_emoji?style=flat-square)](https://github.com/Jacknie666/Douyin_emoji/stargazers)
 
 ---
 
-*如果你有任何建议或发现 Bug，欢迎提出 Issue！*
+## 🌟 项目核心价值 (Core Value)
+
+本工具不仅仅是一个脚本，它是对 **“技术赋能生活”** 的一次微小实践。通过颗粒度细化的转换流程，将抖音封闭生态下的表情包资源，转化为开放生态（GIF）下的社交资产。
+
+### 🚀 核心抓手 (Key Features)
+*   **多维提取**：支持从 HTML 片段中精准识别 `WebP/PNG/JPG` 等多格式静态/动态链接。
+*   **并发收割**：采用 Python `concurrent.futures` 实现高效批量下载，ROI 极高。
+*   **跨端转换**：基于 `Pillow` 的深度转换逻辑，确保 WebP 动图完美降级为 GIF，解决微信兼容性“卡脖子”问题。
+*   **极致优化**：支持颜色量化、抖动处理及帧率自适应，实现画质与体积的完美平衡。
+
+---
+
+## 🛠 技术架构 (Architecture)
+
+```mermaid
+graph LR
+    A[HTML Parsing] --> B[URL Extraction]
+    B --> C[Concurrent Download]
+    C --> D[Pillow Processing]
+    D --> E[GIF Quantization]
+    E --> F[ZIP Packaging]
+```
+
+---
+
+## 📖 使用指南 (Usage)
+
+### 1. 资源对齐 (Preparation)
+在抖音网页版表情区域，通过开发者工具执行 `Copy outerHTML` 获取原始内容。
+
+### 2. 环境初始化 (Setup)
+```bash
+pip install requests pillow beautifulsoup4
+```
+
+### 3. 进入 Sprint (Run)
+```bash
+python main.py
+```
+
+---
+
+## 📂 项目演进 (Roadmap)
+- [x] WebP 转 GIF 核心逻辑
+- [x] 多线程并发优化
+- [x] ZIP 自动化打包
+- [ ] GUI 图形化界面 (规划中)
+- [ ] 自动识别浏览器剪贴板内容 (规划中)
+
+---
+
+## ❤️ 情感基座 (Personal Note)
+**致我最爱的宝宝**：没有你对可爱表情的执着追求，就没有这个项目的**底层驱动力**。每一次技术迭代，都是为了让你在使用表情包时能有更流畅的体验。
+
+---
+
+## 🤝 贡献与反馈
+如果你发现了 Bug 或有更好的**打法建议**，欢迎提 Issue 或 Pull Request。
+
+*Created with ❤️ by Jacknie666*
