@@ -1,0 +1,14 @@
+# ByteDance Session Data
+session.json
+cookie.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Output
+*.zip
+*.log
